@@ -73,7 +73,7 @@ import { Component, OnInit } from '@angular/core';
                 data-dropdown-toggle="dropdownNavbar"
                 class="flex justify-between items-center py-2 pr-4 pl-3 w-full font-medium hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#F1BC6C] md:p-0 md:w-auto dark:text-gray-400 dark:hover: dark:focus: dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
               >
-                All Products
+                ALL PRODUCTS
                 <svg
                   class="ml-1 w-5 h-5"
                   aria-hidden="true"
@@ -88,57 +88,19 @@ import { Component, OnInit } from '@angular/core';
                   ></path>
                 </svg>
               </button>
-              <div
-                id="dropdownNavbar"
-                class="hidden z-40 w-44 font-normal bg-white divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-              >
-                <ul
-                  class="py-1 text-sm text-gray-700 dark:text-gray-400"
-                  aria-labelledby="dropdownLargeButton"
-                >
-                  <li>
-                    <a
-                      href="#"
-                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:"
-                      >Dashboard</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:"
-                      >Settings</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:"
-                      >Earnings</a
-                    >
-                  </li>
-                </ul>
-                <div class="py-1">
-                  <a
-                    href="#"
-                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:"
-                    >Sign out</a
-                  >
-                </div>
-              </div>
             </li>
             <li>
               <a
                 href="#"
                 class="block py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#F1BC6C] md:p-0 dark:text-gray-400 md:dark:hover: dark:hover:bg-gray-700 dark:hover: md:dark:hover:bg-transparent dark:border-gray-700"
-                >Sale</a
+                >SALE</a
               >
             </li>
             <li>
               <a
                 href="#"
                 class="block py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#F1BC6C] md:p-0 dark:text-gray-400 md:dark:hover: dark:hover:bg-gray-700 dark:hover: md:dark:hover:bg-transparent dark:border-gray-700"
-                >Our Story</a
+                >OUR STORY</a
               >
             </li>
 
@@ -146,7 +108,7 @@ import { Component, OnInit } from '@angular/core';
               <a
                 href="#"
                 class="block py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#F1BC6C] md:p-0 dark:text-gray-400 md:dark:hover: dark:hover:bg-gray-700 dark:hover: md:dark:hover:bg-transparent dark:border-gray-700"
-                >Contact</a
+                >CONTACT</a
               >
             </li>
           </ul>
