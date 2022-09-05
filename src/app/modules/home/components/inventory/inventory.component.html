@@ -1,0 +1,26 @@
+<div class="relative mb-96  md:mb-[45rem] lg:mb-[50rem]">
+  <div
+    class="text-white border-t-2 border-[#FCC71A] w-min overflow-hidden mx-auto md:ml-32 mt-32"
+    data-aos="fade-down"
+  >
+    <h1 class="border-r-2 border-l-2 border-[#FCC71A] font-thin">
+      <span class="uppercase text-5xl"> Inventory </span>
+    </h1>
+    <img src="assets/images/home/inventory/text_drip.png" alt="" />
+  </div>
+  <div class="slick-wrapper w-3/4 mx-auto">
+    <ngx-slick-carousel
+      class="carousel"
+      #slickModal="slick-carousel"
+      [config]="slideConfig"
+      (init)="slickInit($event)"
+      (breakpoint)="breakpoint($event)"
+      (afterChange)="afterChange($event)"
+      (beforeChange)="beforeChange($event)"
+    >
+      <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+        <app-product-card></app-product-card>
+      </div>
+    </ngx-slick-carousel>
+  </div>
+</div>

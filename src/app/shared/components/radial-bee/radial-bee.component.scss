@@ -1,0 +1,10 @@
+#radial-bee {
+  background: radial-gradient(
+      37.33% 37.33% at 50% 50%,
+      rgba(255, 199, 0, 0.185) 0%,
+      rgba(255, 199, 0, 0) 100%
+    )
+    center/cover no-repeat;
+  height: 274px;
+  width: 274px;
+}

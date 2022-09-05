@@ -1,0 +1,11 @@
+#multi-bg {
+  background-image: url("/assets/images/home/product-card/rect_2.png"),
+    url("/assets/images/home/product-card/rect_1.png");
+  background-size: 100% 76%, 100% 79%;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+#uni-splash {
+  background: url("/assets/images/home/product-card/splash.png") top no-repeat;
+  background-size: 100% 41%;
+}
