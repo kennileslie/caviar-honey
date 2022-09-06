@@ -1,3 +1,4 @@
+import { MatIconModule } from '@angular/material/icon';
 import { CtaComponent } from './modules/home/components/cta/cta.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,10 +11,11 @@ import { RadialBeeComponent } from './shared/components/radial-bee/radial-bee.co
 import { PropertiesComponent } from './modules/home/components/properties/properties.component';
 import { MultiFloralComponent } from './modules/home/components/multi-floral/multi-floral.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatMenuModule } from '@angular/material/menu';
 
-import { LoginComponent } from './modules/login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './modules/pages/login/login.component';
+import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { InventoryComponent } from './modules/home/components/inventory/inventory.component';
@@ -25,10 +27,13 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 import { CtaFormComponent } from './modules/home/components/cta/cta-form/cta-form.component';
 
 import { TransitionComponent } from './modules/home/components/transition/transition.component';
+import { AuthTokenInterceptor } from './core/interceptors/auth-token.interceptor';
+import { ItemsListComponent } from './modules/pages/items-list/items-list.component';
 
 @NgModule({
   declarations: [
@@ -48,19 +53,24 @@ import { TransitionComponent } from './modules/home/components/transition/transi
     CtaComponent,
     CtaFormComponent,
     TransitionComponent,
+    ItemsListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule,
     FormsModule,
     SlickCarouselModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

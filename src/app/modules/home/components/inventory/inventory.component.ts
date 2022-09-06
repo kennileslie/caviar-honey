@@ -11,7 +11,7 @@ export class InventoryComponent implements OnInit {
   ngOnInit(): void {}
   title = 'ngSlick';
 
-  slides = [342, 453, 846, 855, 234, 564, 744, 243];
+  items = [342, 453, 846, 855];
 
   slideConfig = {
     slidesToShow: 3,
@@ -19,7 +19,8 @@ export class InventoryComponent implements OnInit {
     infinite: false,
     autoplay: true,
     autoplaySpeed: 4000,
-
+    prevArrow: '<div class="slick-prev" ></div>',
+    nextArrow: '<div class="slick-next"></div>',
     responsive: [
       // {
       //   breakpoint: 1024,
@@ -54,6 +55,9 @@ export class InventoryComponent implements OnInit {
   //   this.slides.length = this.slides.length - 1;
   // }
 
+  // images = [
+  //   {img:'assets/'}
+  // ]
   slickInit(e: any) {
     console.log('slick initialized');
   }

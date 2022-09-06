@@ -1,48 +1,68 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, map, Observable, shareReplay, tap } from 'rxjs';
-import { User } from '../interfaces/user';
+import { Observable, tap } from 'rxjs';
+import { APIResponse } from 'src/app/shared/models/api-response';
+import { User } from '../../shared/models/user';
 
-const AUTH_DATA = 'user-login';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private subject = new BehaviorSubject<User | null>(null);
-  user$: Observable<User | null> = this.subject.asObservable();
+  private API_URL: string = 'http://localhost:8080/api/v1/users';
 
-  isLoggedIn$: Observable<boolean>;
-  isLoggedOut$: Observable<boolean>;
+  isLoggedIn: boolean = false;
+  authToken?: string;
 
   constructor(private http: HttpClient, private router: Router) {
-    this.isLoggedIn$ = this.user$.pipe(map((user) => !!user));
-    this.isLoggedOut$ = this.isLoggedIn$.pipe(map((loggedIn) => !loggedIn));
-    const user = localStorage.getItem(AUTH_DATA);
-    if (user) {
-      this.subject.next(JSON.parse(user));
-    }
+    this.autoLogin();
   }
 
-  login(credentials: User): Observable<any> {
-    return this.http
-      .post<any>('http://localhost:4000/login/authlogin', {
-        username: credentials.username,
-        password: credentials.password,
+  login(data: any): Observable<APIResponse<User & string>> {
+    return this.http.post<APIResponse>(this.API_URL + '/login', data).pipe(
+      tap((res) => {
+        if (res.status === 'success') {
+          this.isLoggedIn = true;
+          this.authToken = res.data!['token'];
+          this.saveToken(this.authToken);
+        }
       })
-      .pipe(
-        tap((user) => {
-          console.log(user);
-          this.subject.next(user);
-          localStorage.setItem(AUTH_DATA, JSON.stringify(user));
-        }),
-        shareReplay()
-      );
+    );
+  }
+
+  signup(data: any): Observable<APIResponse<User & string>> {
+    return this.http.post<APIResponse>(this.API_URL + '/signup', data).pipe(
+      tap((res) => {
+        if (res.status === 'success') {
+          this.isLoggedIn = true;
+          this.authToken = res.data!['token'];
+          this.saveToken(this.authToken);
+        }
+      })
+    );
   }
 
   logout() {
-    this.subject.next(null);
-    localStorage.removeItem(AUTH_DATA);
-    this.router.navigateByUrl('/login');
+    this.isLoggedIn = false;
+    this.authToken = undefined;
+
+    localStorage.removeItem('authToken');
+
+    this.router.navigate(['/login']);
+  }
+
+  private autoLogin(): void {
+    let authToken = localStorage.getItem('authToken');
+
+    console.log(JSON.parse(localStorage.getItem('userInfo')!));
+
+    if (authToken) {
+      this.isLoggedIn = true;
+      this.authToken = authToken;
+    }
+  }
+
+  private saveToken(token: string): void {
+    localStorage.setItem('authToken', token);
   }
 }

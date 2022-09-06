@@ -1,6 +1,6 @@
-<div class="relative mb-96  md:mb-[45rem] lg:mb-[50rem]">
+<div class="relative mb-96 md:mb-[45rem] lg:mb-[55rem]">
   <div
-    class="text-white border-t-2 border-[#FCC71A] w-min overflow-hidden mx-auto md:ml-32 mt-32"
+    class="text-white border-t-2 border-[#FCC71A] w-min overflow-hidden mx-auto md:ml-32 mt-36"
     data-aos="fade-down"
   >
     <h1 class="border-r-2 border-l-2 border-[#FCC71A] font-thin">
@@ -8,7 +8,7 @@
     </h1>
     <img src="assets/images/home/inventory/text_drip.png" alt="" />
   </div>
-  <div class="slick-wrapper w-3/4 mx-auto">
+  <div class="slick-wrapper w-3/4 mx-auto relative">
     <ngx-slick-carousel
       class="carousel"
       #slickModal="slick-carousel"
@@ -18,7 +18,7 @@
       (afterChange)="afterChange($event)"
       (beforeChange)="beforeChange($event)"
     >
-      <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+      <div ngxSlickItem *ngFor="let item of items" class="slide">
         <app-product-card></app-product-card>
       </div>
     </ngx-slick-carousel>
