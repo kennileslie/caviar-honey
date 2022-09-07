@@ -34,6 +34,7 @@ import { CtaFormComponent } from './modules/home/components/cta/cta-form/cta-for
 import { TransitionComponent } from './modules/home/components/transition/transition.component';
 import { AuthTokenInterceptor } from './core/interceptors/auth-token.interceptor';
 import { ItemsListComponent } from './modules/pages/items-list/items-list.component';
+import { ContactComponent } from './modules/pages/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ItemsListComponent } from './modules/pages/items-list/items-list.compon
     CtaFormComponent,
     TransitionComponent,
     ItemsListComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

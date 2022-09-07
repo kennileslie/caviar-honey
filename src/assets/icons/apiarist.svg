@@ -1,15 +1,7 @@
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="813.000000pt" height="859.000000pt" viewBox="0 0 813.000000 859.000000" preserveAspectRatio="xMidYMid meet" class='apiarist' >
-		<style>
-		.apiarist> g{
-	fill:white;
-	
-		
-		:hover > g{
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="813.000000pt" height="859.000000pt" viewBox="0 0 813.000000 859.000000" preserveAspectRatio="xMidYMid meet" >
 
-fill:#E5BC6C;
-		}
-		</style>
-<g transform="translate(0.000000,859.000000) scale(0.100000,-0.100000)" fill="none"   >
+
+<g transform="translate(0.000000,859.000000) scale(0.100000,-0.100000)" fill="#FFFFFF"   >
 <path d="M3900 8294 c-288 -35 -526 -126 -760 -292 -162 -114 -412 -379 -530
 -560 -13 -20 -30 -25 -120 -37 -633 -84 -1079 -183 -1430 -320 -375 -146 -608
 -309 -700 -490 -42 -83 -52 -195 -26 -302 9 -38 27 -147 42 -243 82 -559 204

@@ -1,3 +1,4 @@
+import { ContactComponent } from './modules/pages/contact/contact.component';
 import { ItemsListComponent } from './modules/pages/items-list/items-list.component';
 
 import { HomeComponent } from './modules/home/home.component';
@@ -12,13 +13,16 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
+  {
+    path: 'contact',
+    component: ContactComponent,
+  },
   // canActivate: [RequiresAuthGuard],
   {
     path: 'items',
     component: ItemsListComponent,
     canActivate: [RequiresAuthGuard],
   },
-
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' },
