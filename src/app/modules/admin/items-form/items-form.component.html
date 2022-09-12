@@ -1,0 +1,28 @@
+<div class="container text-black">
+  <h1>Create</h1>
+
+  <form (ngSubmit)="form.valid && onSubmit()" #form="ngForm">
+    <label for="item_name"></label>
+    <input type="text" name="name" id="name" [(ngModel)]="data.name" required />
+    <label for="description">Description</label>
+    <input
+      type="text"
+      name="description"
+      id="description"
+      [(ngModel)]="data.description"
+      required
+    />
+    <label for="quantity">quantity</label>
+    <input
+      type="number"
+      name="quantity"
+      id="quantity"
+      [(ngModel)]="data.quantity"
+      required
+    />
+
+    <button type="submit" [disabled]="form.invalid">
+      {{ action === "add" ? "Add" : "Update" }}Item
+    </button>
+  </form>
+</div>

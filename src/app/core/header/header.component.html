@@ -3,7 +3,7 @@
 >
   <nav class="border-gray-200 px-2 sm:px-4 py-2.5 text-[#6D6D6D]">
     <div class="container flex flex-wrap justify-between items-center mx-auto">
-      <a href="" class="flex items-center">
+      <a routerLink="/home" class="flex items-center">
         <img src="assets/icons/logo.png" class="mr-3 w-12" alt="Caviar Logo" />
         <p
           class="self-center font-semibold whitespace-nowrap text-[#F1BC6C] text-xs"
@@ -24,7 +24,7 @@
           <object
             type="image/svg+xml"
             data="assets/icons/apiarist.svg"
-            class="w-full h-full object-cover"
+            class="w-full h-full object-cover relative -z-10"
           ></object>
         </button>
 
@@ -35,7 +35,7 @@
               <button mat-menu-item routerLink="home">HOME</button>
               <button mat-menu-item>PRODUCTS</button>
               <button mat-menu-item>OUR STORY</button>
-              <button mat-menu-item>CONTACT</button>
+              <button mat-menu-item routerLink="contact">CONTACT</button>
             </mat-menu>
           </button>
         </div>
@@ -57,6 +57,7 @@
           <li>
             <button
               class="flex justify-between items-center py-2 pr-4 pl-3 w-full font-medium hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#F1BC6C] md:p-0 md:w-auto"
+           (click)="onClick('products')"
             >
               <span
                 class="relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-white before:transition hover:before:scale-100"

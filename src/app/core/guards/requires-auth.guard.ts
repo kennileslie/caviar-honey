@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/core/authentication/auth.service';
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
@@ -7,7 +8,6 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from '../authentication/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +26,7 @@ export class RequiresAuthGuard implements CanActivate {
     if (this.authService.isLoggedIn) {
       return true;
     } else {
-      return this.router.parseUrl('/home');
+      return this.router.parseUrl('/login');
     }
   }
 }

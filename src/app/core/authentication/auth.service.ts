@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
-import { APIResponse } from 'src/app/shared/models/api-response';
+import { APIResponse } from '../../shared/models/api-response';
 import { User } from '../../shared/models/user';
 
 @Injectable({
@@ -13,30 +13,39 @@ export class AuthService {
 
   isLoggedIn: boolean = false;
   authToken?: string;
+  expiresAt?: Date;
 
   constructor(private http: HttpClient, private router: Router) {
     this.autoLogin();
+    this.autoLogout();
   }
 
-  login(data: any): Observable<APIResponse<User & string>> {
+  login(data: any): Observable<APIResponse<User & string & Date>> {
     return this.http.post<APIResponse>(this.API_URL + '/login', data).pipe(
       tap((res) => {
         if (res.status === 'success') {
           this.isLoggedIn = true;
           this.authToken = res.data!['token'];
-          this.saveToken(this.authToken);
+          this.expiresAt = res.data!['tokenExpires'];
+
+          this.saveToken(this.authToken, this.expiresAt);
+          this.autoLogout();
         }
       })
     );
   }
 
-  signup(data: any): Observable<APIResponse<User & string>> {
-    return this.http.post<APIResponse>(this.API_URL + '/signup', data).pipe(
+  register(data: any): Observable<APIResponse<User & string & Date>> {
+    return this.http.post<APIResponse>(this.API_URL + '/register', data).pipe(
       tap((res) => {
         if (res.status === 'success') {
           this.isLoggedIn = true;
+          
           this.authToken = res.data!['token'];
-          this.saveToken(this.authToken);
+          this.expiresAt = res.data!['tokenExpires'];
+
+          this.saveToken(this.authToken, this.expiresAt);
+          // this.autoLogout();
         }
       })
     );
@@ -47,14 +56,25 @@ export class AuthService {
     this.authToken = undefined;
 
     localStorage.removeItem('authToken');
+    localStorage.removeItem('expiresAt');
 
     this.router.navigate(['/login']);
   }
 
+  private autoLogout(): void {
+    let dateFromStorage = localStorage.getItem('expiresAt');
+    if (!this.expiresAt && !dateFromStorage) return;
+
+    this.expiresAt = new Date(this.expiresAt!) || new Date(dateFromStorage!);
+
+    setTimeout(() => {
+      this.logout();
+      window.alert('Your session has expired');
+    }, this.expiresAt.getTime() - Date.now());
+  }
+
   private autoLogin(): void {
     let authToken = localStorage.getItem('authToken');
-
-    console.log(JSON.parse(localStorage.getItem('userInfo')!));
 
     if (authToken) {
       this.isLoggedIn = true;
@@ -62,7 +82,8 @@ export class AuthService {
     }
   }
 
-  private saveToken(token: string): void {
+  private saveToken(token: string, expiresAt: Date): void {
     localStorage.setItem('authToken', token);
+    localStorage.setItem('expiresAt', JSON.stringify(expiresAt));
   }
 }

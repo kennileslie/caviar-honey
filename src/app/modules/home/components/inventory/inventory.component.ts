@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemsService } from 'src/app/core/services/items.service';
+import { Item } from 'src/app/shared/models/item';
 
 @Component({
   selector: 'app-inventory',
@@ -6,13 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./inventory.component.scss'],
 })
 export class InventoryComponent implements OnInit {
-  constructor() {}
+  items: Item[] = [];
 
-  ngOnInit(): void {}
+  constructor(private itemService: ItemsService) {}
+
+  ngOnInit(): void {
+    this.getAllItems();
+  }
+
+  getAllItems() {
+    this.itemService.getAllItems().subscribe((res) => {
+      if (res.status === 'success') {
+        this.items = res.data!['items'];
+      }
+    });
+  }
   title = 'ngSlick';
-
-  items = [342, 453, 846, 855];
-
   slideConfig = {
     slidesToShow: 3,
     slidesToScroll: 1,

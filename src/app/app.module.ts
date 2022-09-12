@@ -1,3 +1,5 @@
+import { AuthTokenInterceptor } from './core/interceptors/auth-token.interceptor';
+
 import { MatIconModule } from '@angular/material/icon';
 import { CtaComponent } from './modules/home/components/cta/cta.component';
 import { NgModule } from '@angular/core';
@@ -6,7 +8,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { ProductCardComponent } from './shared/components/product-card/product-card.component';
 import { RadialBeeComponent } from './shared/components/radial-bee/radial-bee.component';
 import { PropertiesComponent } from './modules/home/components/properties/properties.component';
 import { MultiFloralComponent } from './modules/home/components/multi-floral/multi-floral.component';
@@ -32,14 +33,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { CtaFormComponent } from './modules/home/components/cta/cta-form/cta-form.component';
 
 import { TransitionComponent } from './modules/home/components/transition/transition.component';
-import { AuthTokenInterceptor } from './core/interceptors/auth-token.interceptor';
-import { ItemsListComponent } from './modules/pages/items-list/items-list.component';
-import { ContactComponent } from './modules/pages/contact/contact.component';
+
+import { ContactComponent } from './modules/pages/contact-us/contact.component';
+
+import { ItemsFormComponent } from './modules/admin/items-form/items-form.component';
+import { ItemsListComponent } from './modules/admin/items-list/items-list.component';
+import { RegisterComponent } from './modules/pages/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductCardComponent,
     RadialBeeComponent,
     PropertiesComponent,
     MultiFloralComponent,
@@ -54,8 +57,10 @@ import { ContactComponent } from './modules/pages/contact/contact.component';
     CtaComponent,
     CtaFormComponent,
     TransitionComponent,
-    ItemsListComponent,
     ContactComponent,
+    ItemsFormComponent,
+    ItemsListComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +76,11 @@ import { ContactComponent } from './modules/pages/contact/contact.component';
     MatButtonModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthTokenInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

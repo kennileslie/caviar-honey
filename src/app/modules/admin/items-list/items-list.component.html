@@ -1,0 +1,13 @@
+<button (click)="logout()">Logout</button>
+
+<button routerLink="/items/new">Add item</button>
+
+<ul *ngFor="let item of items">
+  <li>{{ item.name }}</li>
+  <li>{{ item.quantity }}</li>
+  <li>{{ item.description }}</li>
+  <li>{{ item.quantity }}</li>
+
+  <button [routerLink]="['/items', item._id]">Edit</button>
+  <button (click)="deleteOneItem(item)">Delete</button>
+</ul>

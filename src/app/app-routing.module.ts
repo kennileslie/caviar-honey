@@ -1,11 +1,14 @@
-import { ContactComponent } from './modules/pages/contact/contact.component';
-import { ItemsListComponent } from './modules/pages/items-list/items-list.component';
+import { RegisterComponent } from './modules/pages/register/register.component';
+import { ItemsFormComponent } from './modules/admin/items-form/items-form.component';
+import { RequiresAuthGuard } from './core/guards/requires-auth.guard';
 
-import { HomeComponent } from './modules/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router } from '@angular/router';
-import { RequiresAuthGuard } from './core/guards/requires-auth.guard';
+
+import { HomeComponent } from './modules/home/home.component';
+import { ContactComponent } from './modules/pages/contact-us/contact.component';
 import { LoginComponent } from './modules/pages/login/login.component';
+import { ItemsListComponent } from './modules/admin/items-list/items-list.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -14,13 +17,32 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
+    path: 'register',
+    component: RegisterComponent,
+  },
+
+  {
     path: 'contact',
+
     component: ContactComponent,
   },
-  // canActivate: [RequiresAuthGuard],
+
   {
     path: 'items',
+
     component: ItemsListComponent,
+    canActivate: [RequiresAuthGuard],
+  },
+  {
+    path: 'items/new',
+
+    component: ItemsFormComponent,
+    canActivate: [RequiresAuthGuard],
+  },
+  {
+    path: 'items/:id',
+
+    component: ItemsFormComponent,
     canActivate: [RequiresAuthGuard],
   },
 
@@ -29,7 +51,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { anchorScrolling: 'enabled' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {

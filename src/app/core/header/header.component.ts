@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
@@ -8,7 +9,10 @@ import { filter } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
   panelOpenState = false;
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private viewPortScroller: ViewportScroller
+  ) {}
   ngOnInit() {
     this.routerCheck();
   }
@@ -34,5 +38,9 @@ export class HeaderComponent implements OnInit {
           navMenu?.classList.add('header-change');
         }
       });
+  }
+
+  public onClick(elementId: string): void {
+    this.viewPortScroller.scrollToAnchor(elementId);
   }
 }

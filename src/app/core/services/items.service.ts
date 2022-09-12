@@ -1,36 +1,52 @@
-import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/core/authentication/auth.service';
+import { APIResponse } from './../../shared/models/api-response';
+import { Item } from '../../shared/models/item';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { APIResponse } from 'src/app/shared/models/api-response';
-import  { Item } from 'src/app/shared/models/item'
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, Observable, of } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
-export class ItemService {
-  private readonly API_URL: string = 'http://localhost:8080/api/v1/items/';
+export class ItemsService {
+  private API_URL: string = 'http://localhost:8080/api/v1/items/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
+
+  _handleHTTPError = (res: HttpErrorResponse): Observable<APIResponse> => {
+    if (res.error.error?.name === 'TokenExpiredError') {
+      window.alert('Your session has expired');
+      this.authService.logout();
+    }
+
+    return of(res.error);
+  };
 
   getAllItems(): Observable<APIResponse<Item[]>> {
-    return this.http.get<APIResponse<Item[]>>(this.API_URL);
+    return this.http
+      .get<APIResponse<Item[]>>(this.API_URL)
+      .pipe(catchError(this._handleHTTPError));
   }
-
   getItemById(id: string): Observable<APIResponse<Item>> {
-    return this.http.get<APIResponse<Item>>(this.API_URL + id);
+    return this.http
+      .get<APIResponse<Item>>(this.API_URL + id)
+      .pipe(catchError(this._handleHTTPError));
   }
-
   createItem(item: Item): Observable<APIResponse<Item>> {
-    return this.http.post<APIResponse<Item>>(this.API_URL, item);
+    return this.http
+      .post<APIResponse<Item>>(this.API_URL, item)
+      .pipe(catchError(this._handleHTTPError));
   }
 
   updateItem(item: Item): Observable<APIResponse<Item>> {
-    return this.http.put<APIResponse<Item>>(
-      this.API_URL + item._id,
-      item
-    );
+    return this.http
+      .put<APIResponse<Item>>(this.API_URL + item._id, item)
+      .pipe(catchError(this._handleHTTPError));
   }
 
-  deleteItem(item: Item): Observable<APIResponse> {
-    return this.http.delete<APIResponse>(this.API_URL + item._id);
+  deleteItem(item: Item): Observable<APIResponse<Item>> {
+    return this.http
+      .delete<APIResponse<Item>>(this.API_URL + item._id)
+      .pipe(catchError(this._handleHTTPError));
   }
 }
