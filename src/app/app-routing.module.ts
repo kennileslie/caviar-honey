@@ -1,3 +1,4 @@
+import { AdminGuard } from './core/guards/admin.guard';
 import { RegisterComponent } from './modules/pages/register/register.component';
 import { ItemsFormComponent } from './modules/admin/items-form/items-form.component';
 import { RequiresAuthGuard } from './core/guards/requires-auth.guard';
@@ -31,7 +32,7 @@ const routes: Routes = [
     path: 'items',
 
     component: ItemsListComponent,
-    canActivate: [RequiresAuthGuard],
+    canActivate: [RequiresAuthGuard, AdminGuard],
   },
   {
     path: 'items/new',

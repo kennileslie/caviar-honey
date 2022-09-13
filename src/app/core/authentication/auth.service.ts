@@ -12,6 +12,7 @@ export class AuthService {
   private API_URL: string = 'http://localhost:8080/api/v1/users';
 
   isLoggedIn: boolean = false;
+  isAdmin: boolean = false;
   authToken?: string;
   expiresAt?: Date;
 
@@ -27,9 +28,13 @@ export class AuthService {
           this.isLoggedIn = true;
           this.authToken = res.data!['token'];
           this.expiresAt = res.data!['tokenExpires'];
-
+          if (res.data!['user'].role === 'admin') {
+            this.isAdmin = true;
+          }
           this.saveToken(this.authToken, this.expiresAt);
-          this.autoLogout();
+          this.adminToken(res.data!['user'].role!);
+
+          // this.autoLogout();
         }
       })
     );
@@ -40,7 +45,7 @@ export class AuthService {
       tap((res) => {
         if (res.status === 'success') {
           this.isLoggedIn = true;
-          
+
           this.authToken = res.data!['token'];
           this.expiresAt = res.data!['tokenExpires'];
 
@@ -62,20 +67,22 @@ export class AuthService {
   }
 
   private autoLogout(): void {
-    let dateFromStorage = localStorage.getItem('expiresAt');
-    if (!this.expiresAt && !dateFromStorage) return;
-
-    this.expiresAt = new Date(this.expiresAt!) || new Date(dateFromStorage!);
-
-    setTimeout(() => {
-      this.logout();
-      window.alert('Your session has expired');
-    }, this.expiresAt.getTime() - Date.now());
+    // let dateFromStorage = localStorage.getItem('expiresAt');
+    // if (!this.expiresAt && !dateFromStorage) return;
+    // this.expiresAt = new Date(this.expiresAt!) || new Date(dateFromStorage!);
+    // setTimeout(() => {
+    //   this.logout();
+    //   window.alert('Your session has expired');
+    // }, this.expiresAt.getTime() - Date.now());
   }
 
   private autoLogin(): void {
     let authToken = localStorage.getItem('authToken');
-
+    let admin = localStorage.getItem('admin');
+    if (admin === 'admin') {
+      this.isAdmin = true;
+    }
+    console.log(admin);
     if (authToken) {
       this.isLoggedIn = true;
       this.authToken = authToken;
@@ -85,5 +92,10 @@ export class AuthService {
   private saveToken(token: string, expiresAt: Date): void {
     localStorage.setItem('authToken', token);
     localStorage.setItem('expiresAt', JSON.stringify(expiresAt));
+  }
+
+  private adminToken(payload: string): void {
+    localStorage.setItem('admin', payload);
+    console.log(payload);
   }
 }
