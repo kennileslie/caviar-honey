@@ -6,8 +6,55 @@
   <li>{{ item.name }}</li>
   <li>{{ item.quantity }}</li>
   <li>{{ item.description }}</li>
-  <li>{{ item.quantity }}</li>
 
   <button [routerLink]="['/items', item._id]">Edit</button>
-  <button (click)="deleteOneItem(item)">Delete</button>
 </ul>
+
+<div class="overflow-x-auto">
+  <table class="min-w-full text-sm divide-y-2 divide-gray-200">
+    <thead>
+      <tr>
+        <th
+          class="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap"
+        >
+          Name
+        </th>
+        <th
+          class="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap"
+        >
+          Date of Birth
+        </th>
+        <th
+          class="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap"
+        >
+          Role
+        </th>
+        <th
+          class="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap"
+        >
+          Salary
+        </th>
+      </tr>
+    </thead>
+
+    <tbody class="divide-y divide-gray-200">
+      <tr *ngFor="let item of items">
+        <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">
+          {{ item.name }}
+        </td>
+        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
+          {{ item.quantity }}
+        </td>
+        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
+          {{ item.description }}
+        </td>
+        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
+          <button [routerLink]="['/items', item._id]">Edit</button>
+        </td>
+        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
+          <button (click)="deleteOneItem(item)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

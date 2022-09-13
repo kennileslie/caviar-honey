@@ -9,7 +9,7 @@ import { User } from '../../shared/models/user';
   providedIn: 'root',
 })
 export class AuthService {
-  private API_URL: string = 'http://localhost:8080/api/v1/users';
+  private API_URL: string = 'https://caviar-honey.herokuapp.com';
 
   isLoggedIn: boolean = false;
   isAdmin: boolean = false;
