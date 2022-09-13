@@ -74,7 +74,7 @@ import { Component, OnInit } from '@angular/core';
       </div>
     </div>
   </div> `,
-  styleUrls: ['./cta-form.component.scss'],
+  styles: [``],
 })
 export class CtaFormComponent implements OnInit {
   constructor() {}
