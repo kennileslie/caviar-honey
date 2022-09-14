@@ -186,8 +186,8 @@ import { Component, OnInit } from '@angular/core';
               </svg>
             </div>
           </div>
-          <div class="w-min h-min mt-80 hidden lg:block">
-            <div class="max-w-1/3 -mt-28">
+          <div class="lg:flex flex-row w-min h-min hidden xl:mt-60  ">
+            <div class="max-w-1/3">
               <svg
                 class="svg-graphic"
                 width="230"
@@ -213,9 +213,8 @@ import { Component, OnInit } from '@angular/core';
                 />
               </svg>
             </div>
-          </div>
-          <div class="w-min h-min mt-24 hidden lg:block">
-            <div class="max-w-1/3">
+
+            <div class="max-w-1/3  xl:-translate-y-32">
               <svg
                 class="svg-graphic"
                 width="230"

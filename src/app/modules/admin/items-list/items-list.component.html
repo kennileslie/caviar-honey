@@ -1,60 +1,42 @@
-<button (click)="logout()">Logout</button>
-
-<button routerLink="/items/new">Add item</button>
-
-<ul *ngFor="let item of items">
-  <li>{{ item.name }}</li>
-  <li>{{ item.quantity }}</li>
-  <li>{{ item.description }}</li>
-
-  <button [routerLink]="['/items', item._id]">Edit</button>
-</ul>
-
-<div class="overflow-x-auto">
-  <table class="min-w-full text-sm divide-y-2 divide-gray-200">
+<div>
+  <table class="min-w-3/4 mx-auto text-sm divide-y-2 divide-gray-200">
     <thead>
       <tr>
-        <th
-          class="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap"
-        >
-          Name
+        <th class="px-4 py-2 font-medium text-left whitespace-nowrap">Name</th>
+        <th class="px-4 py-2 font-medium text-left whitespace-nowrap">
+          Quantity
         </th>
-        <th
-          class="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap"
-        >
-          Date of Birth
+        <th class="px-4 py-2 font-medium text-left whitespace-nowrap">
+          Description
         </th>
-        <th
-          class="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap"
-        >
-          Role
-        </th>
-        <th
-          class="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap"
-        >
-          Salary
+        <th class="px-4 py-2 font-medium text-left whitespace-nowrap">
+          <button
+            routerLink="/items/new"
+            class="border-white border rounded-lg px-2 py-1 bg-white text-black"
+          >
+            Add item
+          </button>
         </th>
       </tr>
     </thead>
 
     <tbody class="divide-y divide-gray-200">
       <tr *ngFor="let item of items">
-        <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">
+        <td class="px-4 py-2 font-medium whitespace-nowrap">
           {{ item.name }}
         </td>
-        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
-          {{ item.quantity }}
-        </td>
-        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
+        <td class="px-4 py-2 whitespace-nowrap">{{ item.quantity }}.oz</td>
+        <td class="px-4 py-2 whitespace-nowrap">
           {{ item.description }}
         </td>
-        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
+        <td class="px-4 py-2 whitespace-nowrap">
           <button [routerLink]="['/items', item._id]">Edit</button>
         </td>
-        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
+        <td class="px-4 py-2 whitespace-nowrap">
           <button (click)="deleteOneItem(item)">Delete</button>
         </td>
       </tr>
+      <tr></tr>
     </tbody>
   </table>
 </div>

@@ -45,9 +45,10 @@ import { filter } from 'rxjs';
               <mat-icon class="text-white">menu</mat-icon>
               <mat-menu #beforeMenu="matMenu" xPosition="before">
                 <button mat-menu-item routerLink="home">HOME</button>
-                <button mat-menu-item>PRODUCTS</button>
+                <button mat-menu-item      (click)="onClick('products')" >PRODUCTS</button>
                 <button mat-menu-item>OUR STORY</button>
                 <button mat-menu-item routerLink="contact">CONTACT</button>
+                <button mat-menu-item routerLink="login">Login</button>
               </mat-menu>
             </button>
           </div>

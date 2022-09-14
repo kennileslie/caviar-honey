@@ -21,10 +21,13 @@
         with the highest quality delicious honey!
       </p>
       <div class="flex justify-center mt-4">
-        <!-- <button class="inline-flex">
+        <button
+          class="inline-flex px-6 py-4 rounded-lg"
+          (click)="onClick('products')"
+        >
           <span
             ><i
-              class="fa-solid fa-circle-down fa-4x fa-bounce text-[#F1BC6C]"
+              class="fa-solid fa-arrow-down-long fa-5x fa-bounce text-[#F1BC6C]"
               style="
                 --fa-bounce-start-scale-x: 1;
                 --fa-bounce-start-scale-y: 1;
@@ -36,7 +39,7 @@
               "
             ></i
           ></span>
-        </button> -->
+        </button>
       </div>
     </div>
     <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">

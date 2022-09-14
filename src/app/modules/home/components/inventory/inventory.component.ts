@@ -41,7 +41,9 @@ import { Item } from 'src/app/shared/models/item';
                     <div class="max-w-[35ch]">
                       <h1 class="text-2xl font-bold">{{ item.name }}</h1>
 
-                      <div class="flex mt-2 -ml-0.5">{{ item.quantity }}oz</div>
+                      <div class="flex mt-2 -ml-0.5">
+                        Qty: {{ item.quantity }}.oz
+                      </div>
                     </div>
                   </div>
 
@@ -49,9 +51,7 @@ import { Item } from 'src/app/shared/models/item';
                     <summary class="block">
                       <div>
                         <div class="prose max-w-none group-open:hidden">
-                          <p>
-                            {{ item.description }}
-                          </p>
+                          <p>{{ item.description }}</p>
                         </div>
                       </div>
                     </summary>

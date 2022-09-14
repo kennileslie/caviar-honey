@@ -1,28 +1,68 @@
-<div class="container text-black">
-  <h1>Create</h1>
+<div class="px-4 py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
+  <div class="max-w-lg mx-auto text-center">
+    <h1 class="text-2xl font-bold sm:text-3xl">Create Item</h1>
+  </div>
 
-  <form (ngSubmit)="form.valid && onSubmit()" #form="ngForm">
-    <label for="item_name"></label>
-    <input type="text" name="name" id="name" [(ngModel)]="data.name" required />
-    <label for="description">Description</label>
-    <input
-      type="text"
-      name="description"
-      id="description"
-      [(ngModel)]="data.description"
-      required
-    />
-    <label for="quantity">quantity</label>
-    <input
-      type="number"
-      name="quantity"
-      id="quantity"
-      [(ngModel)]="data.quantity"
-      required
-    />
+  <form
+    action=""
+    class="max-w-md mx-auto mt-8 mb-0 space-y-4 text-black"
+    (ngSubmit)="form.valid && onSubmit()"
+    #form="ngForm"
+  >
+    <div>
+      <label for="name" class="sr-only">Name</label>
 
-    <button type="submit" [disabled]="form.invalid">
-      {{ action === "add" ? "Add" : "Update" }}Item
-    </button>
+      <div class="relative">
+        <input
+          type="text"
+          name="name"
+          id="name"
+          [(ngModel)]="data.name"
+          required
+          class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+          placeholder="Name"
+        />
+      </div>
+    </div>
+
+    <div>
+      <label for="description" class="sr-only">Password</label>
+      <div class="relative">
+        <input
+          type="text"
+          name="description"
+          id="description"
+          [(ngModel)]="data.description"
+          required
+          class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+          placeholder="Description"
+        />
+      </div>
+    </div>
+    <div>
+      <label for="Quantity" class="sr-only">Quantity</label>
+      <div class="relative">
+        <input
+          type="number"
+          name="quantity"
+          id="quantity"
+          [(ngModel)]="data.quantity"
+          required
+          class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+          placeholder="Quantity"
+        />
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <button
+        type="submit"
+        class="inline-block px-5 py-3 text-sm font-medium border-white border rounded-lg ml-auto text-white"
+        type="submit"
+        [disabled]="form.invalid"
+      >
+        {{ action === "add" ? "Add" : "Update" }} Item
+      </button>
+    </div>
   </form>
 </div>
