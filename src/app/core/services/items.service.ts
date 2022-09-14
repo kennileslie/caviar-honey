@@ -9,7 +9,7 @@ import { catchError, Observable, of } from 'rxjs';
   providedIn: 'root',
 })
 export class ItemsService {
-  private API_URL: string = 'https://caviar-honey.herokuapp.com/items/';
+  private API_URL: string = 'https://caviar-honey.herokuapp.com/api/v1/items/';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
